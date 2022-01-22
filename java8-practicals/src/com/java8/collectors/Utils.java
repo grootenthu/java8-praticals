@@ -17,4 +17,17 @@ public class Utils {
 				new Person("Jill", 11)
 		);
 	}
+	
+	public static List<Person> createDistinctPeople() {
+		return Arrays.asList(
+				new Person("Sara", 20), 
+				new Person("Nancy", 22),
+				new Person("Bob", 20),
+				new Person("Paula", 32),
+				new Person("Paul", 32),
+				new Person("Jack", 3),
+				new Person("John", 72),
+				new Person("Jill", 11)
+		);
+	}
 }

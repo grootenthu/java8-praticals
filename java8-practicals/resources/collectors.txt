@@ -25,5 +25,9 @@ Stream
    You can go from collection of persons to collection of names or even collection of ages.
    Java has reduce in two forms:
    		- reduce & collect
+   		
+ - Collector work with 3 different types i.e. Collector<T, A, R>
+ 			--> T is the object your are dealing with, A is the accumulator of operations and R becomes the value after combining accumulated values
+ 			-- By definition collectors engage into mutability but they keep mutability local
 
    

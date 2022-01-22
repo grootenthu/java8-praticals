@@ -1,0 +1,29 @@
+Collectors - Utility class in JDK, which is a collection of lot of utility functions which makes our lives easier
+
+Java and Functional Programming:
+ - We can not only do imperative & object oriented programming in java, but we can also do functional programming in java
+ - Polymorphism is the core or essence of OOP.
+ - Functional Programming
+ 		- Functional composition (syntax) + lazy evaluation (semantics)
+ 		- One of the benefits of lazy evaluation is that it postpones creation of objects which results in more efficiency
+ 		- Lazy evaluations require purity of functions.
+ 			- Pure function returns the same result any number of times we call it with the same input. (Idempotency)
+ 			- Pure functions don't have side effects
+ 			- 1. Pure functions do not change anything (This rule is necessary but not sufficient)
+ 			- 2. Pure functions do not depend on anything that may possibly change (immutability)
+ 			- It is our responsibility to write pure functions because compiler will not tell us
+
+Stream
+ - Not only streams gives us internal iterators but also gives us the capability of lazy evaluation
+ - Before java 8 was even released we could actually call filter operation directly on the collection.
+ - Later it was removed, because the method forEach uses eager evaluation but filter gives us lazy evaluation.
+ - The syntax .stream() conveys a semantical transformation from eager evaluation to lazy evaluation.
+ - Filter allows us the ability to pick certain values and skip which are not required from collection.
+ - Map is a transformation function which takes a each value from collection and transforms it into another value.
+ - Reduce takes the collection & reduces to a single value.
+   Reduce converts a Stream to something concrete. It doesn't always have to give single value.
+   You can go from collection of persons to collection of names or even collection of ages.
+   Java has reduce in two forms:
+   		- reduce & collect
+
+   

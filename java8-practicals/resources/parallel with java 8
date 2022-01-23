@@ -1,0 +1,73 @@
+Parallel & Asynchronous Programming with Stream & Completable Future
+
+Parallel vs. Asynchronous
+ - nature of problems
+ - when to use parallel
+ - when to use asynchronous
+ 
+ - Example
+ 		- Suppose we want to host a party
+ 			- Pizza
+ 			- Drinks
+ 		- If we go and bring the pizza first and only then go out to bring drinks then this will mean the party has to wait
+ 		- What if we call 2 of our friends and then ask each one of them to bring pizza & drinks
+ 			- In this case you are not going to wait as much of time as compared to sequential
+ 			- As soon as both arrives you get to start your party
+ 			- Parallelism using Fork + join
+ 		- What if we say party is not only about pizza and drink but also about having fun
+ 			- So what if we ask two of our friends to bring pizza and drinks
+ 			- But you get the party started
+ 			- In this case you are not waiting for it to start or complete
+ 			- This is asynchronous
+ 			- Usually a callback is used
+ 
+Parallel Streams
+
+ - Streams in java uses collection pipeline pattern.
+ - Imperative style of programming has accidental complexity
+ 	- Difficult to parallelize
+ 	- Synchronize and suffer model
+ 	- Structure of the code also changes drastically from the initial code without parallelism
+ - Functional style has less complexity & provides functional composition
+ 	- They are also easier to parallelize
+ 	- Using streams the structure of sequential code is identical to the structure of concurrent code
+ 
+ - Performance and also correctness are important when using concurrency. Parallel & mutability does not go together.
+ 
+ Parallel as a master switch
+ 
+ - It is easy to turn on the switch but one must think before doing so.
+ 
+
+// We solve one set of problems only to create a new set of problems
+
+//Java 1 - Threads
+//Java 5 - ExecutorServices (Pool induced deadlock - it was the way the pool was implemented i.e. divide a problem and wait for other thread to solve and then combine all - divide & conquer)
+
+//Java 7 - Fork Join Pool (Work stealing) -> When you divide a problem you also be part of solving the problem and not just dividing it
+//Java 8 - Uses Java 7's FJP i.e. Common FJP
+
+
+------------------------------------------------
+Reduce works as following
+
+							e1	   e2      e3 ...
+						   	|       |       |
+init/identity value  --->  op ---> op ---> op .... ---> result
+
+------------------------------------------------
+Streams									Reactive Streams
+It is more about					It is more about
+sequential vs. parallel				synchronous vs. asynchronous
+
+Entire pipeline is					Depends
+either sequential or
+parallel and there are no
+segments
+
+									subscribeOn - no segments
+									observeOn - segments (you can 
+									define which segments you want
+									to run sequential and which to
+									run in parallel)
+ 	

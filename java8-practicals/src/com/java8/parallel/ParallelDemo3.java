@@ -1,6 +1,9 @@
 package com.java8.parallel;
 
+import java.util.List;
 import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.Stream;
 
 /**
  * Using parallel streams
@@ -14,9 +17,9 @@ import java.util.concurrent.ForkJoinPool;
  * @author groot
  *
  */
-public class Parallel3 {
+public class ParallelDemo3 {
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		
 		//How many threads can I create? //bad question
 		//How many threads should I create? //always think this way
@@ -45,9 +48,41 @@ public class Parallel3 {
 		//because it might reduce performance
 		
 		//configure it programmatically
+		List<Integer> numbers = List.of(1,2,3,4,5,6,7,8,9,10);
+		process(numbers.parallelStream()
+				.map(e -> transform(e)));
 		
+		//Parallel does not always means faster
 		
+		//When parallel makes no sense
+		//for example using parallel stream with findFirst will always run sequentially
+		//also when using filter operations you may end up using more objects than required on findFirst
+		//and using parallel stream with findAny will run parallely
+	}
+	
+	public static void process (Stream<Integer> stream) throws Exception {
+		ForkJoinPool pool = new ForkJoinPool(100);
 		
+		pool.submit(() -> stream.forEach(e -> {}));
+		
+		pool.shutdown();
+		pool.awaitTermination(10, TimeUnit.SECONDS);
+		
+	}
+	
+	public static int transform(int number) {
+		System.out.println("t: " + number + "--" + Thread.currentThread());
+		sleep(500);
+		return number * 1;
+	}
+	
+	private static boolean sleep(int ms) {
+		try {
+			Thread.sleep(ms);
+			return true;
+		} catch (InterruptedException ie) {
+			return false;
+		}
 	}
 
 }

@@ -1,0 +1,39 @@
+Asynchronous execution
+	- Non blocking
+	- we want to execute a task without blocking / waiting for execution
+	
+How do you get back results from async?
+	- Future
+		- Once a method runs it returns immediately
+			Future<?> future = callAsync();
+			do some other task
+			...
+			future.get();
+			
+			- this will block
+	- Callbacks
+		- lacks consistency ==> Is the first parameter data or error
+		- hard to compose ==> What if I want to call another async method from the call back
+		- hard to deal with errors ==> What of the there is error before the callback is invoked
+	- Promises
+		- Used in javascript
+		- A promise may be in 3 state : resolve, reject, or be pending
+		- Uses data channel & error channel
+			- Stream   -> dataflow (What if something goes wrong in streams?)
+		- Two channels
+			data -->
+			error -->
+			
+				-----f----f------------f-------------- (data track)
+						   \	      /
+				------------f--------f---------------- (error track)
+				- Treat errors as another form of data
+				- Errors are first class citizens
+				- Easy to compose
+	- CompletableFuture in java is nothing but Promises in javascript
+		- stages
+			- every single stage takes a completable future & returns another completable future. This chain never ends
+		- get v/s getNow
+		
+			
+				

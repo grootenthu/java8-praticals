@@ -1,7 +1,6 @@
 package com.java8.collectors;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,6 +34,10 @@ public class FilterMapReduceExample {
 		System.out.println(Utils.createPeople().stream()
 				  .map(person -> person.getAge())
 				  .reduce(0, Integer::sum));
+		//example 4 using sum
+		System.out.println(Utils.createPeople().stream()
+				  .mapToInt(person -> person.getAge())
+				  .sum());
 		
 		//5. print the list of names, in upper case, of those who are older then 30
 		

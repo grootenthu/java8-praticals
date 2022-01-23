@@ -25,9 +25,26 @@ Stream
    You can go from collection of persons to collection of names or even collection of ages.
    Java has reduce in two forms:
    		- reduce & collect
+   		- sum
    		
  - Collector work with 3 different types i.e. Collector<T, A, R>
  			--> T is the object your are dealing with, A is the accumulator of operations and R becomes the value after combining accumulated values
- 			-- By definition collectors engage into mutability but they keep mutability local
+ 			--> By definition collectors engage into mutability but they keep mutability local
 
-   
+ - Understand map v/s mapping (i.e. in the middle of reduce) & filter v/s filtering (i.e. in the middle of reduce) filtering introduced in java 10/11
+ - groupingBy & mapping takes (Function, Collector)
+ - counting itself is a collector and therefore we need (Collector, Function) which will transform the Long to Integer
+ - collectingAndThen take (Collector, Function)
+ - teeing (Collector, Collector, operation) introduced in java 11
+ 
+ Exception Handling
+ 
+  - Exception handling is an imperative style of programming concept.
+  - In functional programming we deal with stream of data - data flow
+  - Exception handling makes zero sense when dealing with functional programming. It does not mean error is not important but exceptions don't make any sense because they blow up your stack.
+  - In functional programming you deal with the exceptions downstream.
+  - Example in Reactive library, they gave use 3 channels : data channel, error channel & complete channel
+  			- Data channel carries the data
+  			- When something goes wrong the error channel carries the error
+  			- That means data & channel are both different types of data
+  
